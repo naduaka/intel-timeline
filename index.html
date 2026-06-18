@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel Sustainability Through the Ages</title>
+  <title>Intel — الاستدامة عبر العصور</title>
 
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Intel+Clear:wght@300;400;700&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── TOKENS ─────────────────────────────────────────────── */
+    /* ── TOKENS ─────────────────────────────────────── */
     :root {
-      --intel-blue:   #0068b5;
-      --intel-dark:   #003c71;
-      --intel-light:  #00aeef;
-      --intel-teal:   #00b4c8;
-      --white:        #ffffff;
-      --offwhite:     #f4f7fb;
-      --gray-100:     #e8edf4;
-      --gray-400:     #8a9bb0;
-      --gray-700:     #2d3f52;
-      --ink:          #0d1b2a;
-
-      --font: 'Barlow', 'Segoe UI', sans-serif;
-      --font-condensed: 'Barlow Condensed', sans-serif;
+      --intel-blue:  #0068b5;
+      --intel-dark:  #003c71;
+      --intel-light: #00aeef;
+      --intel-teal:  #00b4c8;
+      --white:       #ffffff;
+      --offwhite:    #f4f7fb;
+      --gray-100:    #e8edf4;
+      --gray-400:    #8a9bb0;
+      --gray-700:    #2d3f52;
+      --ink:         #0d1b2a;
+      --font:        'Barlow', 'Noto Sans Arabic', sans-serif;
+      --font-cond:   'Barlow Condensed', 'Noto Sans Arabic', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +41,42 @@
       overflow-x: hidden;
     }
 
-    /* ── HERO ───────────────────────────────────────────────── */
+    /* ── RTL base ───────────────────────────────────── */
+    [dir="rtl"] body { font-family: 'Noto Sans Arabic', var(--font); }
+    [dir="ltr"] body { font-family: var(--font); }
+
+    /* ── LANGUAGE TOGGLE ─────────────────────────────── */
+    .lang-bar {
+      background: var(--intel-dark);
+      padding: 0.45rem 1.2rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    [dir="rtl"] .lang-bar { justify-content: flex-start; }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      background: var(--intel-light);
+      border-color: var(--intel-light);
+      color: var(--white);
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
     .hero {
       background: linear-gradient(135deg, var(--intel-dark) 0%, var(--intel-blue) 55%, var(--intel-light) 100%);
       color: var(--white);
@@ -57,7 +96,6 @@
       pointer-events: none;
     }
 
-    /* circuit-board grid lines */
     .hero::after {
       content: '';
       position: absolute;
@@ -77,10 +115,10 @@
     }
 
     .intel-logo {
-      font-family: var(--font-condensed);
+      font-family: var(--font-cond);
       font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.7);
       margin-bottom: 1.8rem;
@@ -91,64 +129,51 @@
     }
 
     .intel-logo-mark {
-      width: 36px; height: 36px;
+      width: 40px; height: 40px;
       border: 2.5px solid var(--intel-light);
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--intel-light);
-      letter-spacing: 0;
     }
 
     .hero h1 {
-      font-family: var(--font-condensed);
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-family: var(--font-cond);
+      font-size: clamp(2.2rem, 6vw, 4rem);
       font-weight: 700;
       line-height: 1.1;
       margin-bottom: 1rem;
-      letter-spacing: -0.01em;
     }
 
     .hero h1 span { color: var(--intel-light); }
 
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 300;
       color: rgba(255,255,255,0.8);
-      max-width: 540px;
+      max-width: 560px;
       margin: 0 auto 2rem;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .hero-hint {
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      color: rgba(255,255,255,0.45);
     }
 
-    .hero-hint::before,
-    .hero-hint::after {
-      content: '';
-      width: 30px; height: 1px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* ── SECTION WRAPPER ────────────────────────────────────── */
+    /* ── SECTION HEADER ──────────────────────────────── */
     .section-header {
       text-align: center;
       padding: 3.5rem 2rem 1rem;
     }
 
     .section-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--intel-blue);
@@ -156,16 +181,15 @@
     }
 
     .section-title {
-      font-family: var(--font-condensed);
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-family: var(--font-cond);
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
       font-weight: 700;
       color: var(--intel-dark);
     }
 
-    /* ── TIMELINE TRACK ─────────────────────────────────────── */
+    /* ── TIMELINE ────────────────────────────────────── */
     .timeline-outer {
       padding: 2rem 2rem 3rem;
-      /* scroll snap container */
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -186,7 +210,6 @@
       padding-bottom: 1rem;
     }
 
-    /* connecting line */
     .timeline-track::before {
       content: '';
       position: absolute;
@@ -197,7 +220,7 @@
       z-index: 0;
     }
 
-    /* ── MILESTONE CARD ─────────────────────────────────────── */
+    /* ── CARD ─────────────────────────────────────────── */
     .card {
       scroll-snap-align: start;
       width: 260px;
@@ -208,9 +231,7 @@
       position: relative;
       border: 1px solid var(--gray-100);
       box-shadow: 0 2px 12px rgba(0,104,181,0.07);
-      /* CSS Transform LevelUp */
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
-                  box-shadow 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
       cursor: pointer;
       z-index: 1;
     }
@@ -222,17 +243,21 @@
 
     .card-year {
       position: absolute;
-      top: 14px; left: 14px;
+      top: 14px;
       background: var(--intel-blue);
       color: var(--white);
-      font-family: var(--font-condensed);
+      font-family: var(--font-cond);
       font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       padding: 0.25rem 0.6rem;
       border-radius: 4px;
       z-index: 2;
     }
+
+    /* RTL: year badge on left; LTR: right */
+    [dir="rtl"] .card-year { right: 14px; left: auto; }
+    [dir="ltr"] .card-year { left: 14px; right: auto; }
 
     .card-img {
       width: 100%;
@@ -242,13 +267,11 @@
       background: var(--gray-100);
     }
 
-    .card-body {
-      padding: 1.2rem;
-    }
+    .card-body { padding: 1.2rem; }
 
     .card-title {
-      font-family: var(--font-condensed);
-      font-size: 1.15rem;
+      font-family: var(--font-cond);
+      font-size: 1.12rem;
       font-weight: 700;
       color: var(--intel-dark);
       margin-bottom: 0.4rem;
@@ -262,7 +285,6 @@
       margin-bottom: 0.8rem;
     }
 
-    /* hidden detail — revealed on hover */
     .card-detail {
       font-size: 0.82rem;
       color: var(--gray-700);
@@ -273,10 +295,7 @@
       transition: max-height 0.45s ease, opacity 0.35s ease 0.05s;
     }
 
-    .card:hover .card-detail {
-      max-height: 200px;
-      opacity: 1;
-    }
+    .card:hover .card-detail { max-height: 200px; opacity: 1; }
 
     .card-footer {
       padding: 0.7rem 1.2rem;
@@ -286,7 +305,7 @@
       align-items: center;
       gap: 0.4rem;
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--intel-blue);
       font-weight: 600;
@@ -297,9 +316,85 @@
       width: 6px; height: 6px;
       background: var(--intel-teal);
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    /* ── STATS BAND ─────────────────────────────────────────── */
+    /* ── THREE-COLUMN SUSTAINABILITY SECTION ─────────── */
+    .pillars-section {
+      background: var(--gray-100);
+      padding: 4rem 0;
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      height: 100%;
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 2px 8px rgba(0,104,181,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-align: center;
+    }
+
+    [dir="rtl"] .pillar-card { text-align: right; }
+    [dir="ltr"] .pillar-card { text-align: left; }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,104,181,0.13);
+    }
+
+    .pillar-icon {
+      font-size: 2rem;
+      color: var(--intel-blue);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-cond);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--intel-dark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    [dir="rtl"] .pillar-card h3 { justify-content: flex-end; }
+    [dir="ltr"] .pillar-card h3 { justify-content: flex-start; }
+
+    .pillar-card p {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-learn {
+      background: transparent;
+      border: 1.5px solid var(--intel-blue);
+      color: var(--intel-blue);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-learn:hover {
+      background: var(--intel-blue);
+      color: var(--white);
+    }
+
+    /* ── STATS BAND ──────────────────────────────────── */
     .stats {
       background: var(--intel-dark);
       color: var(--white);
@@ -312,7 +407,7 @@
     }
 
     .stat-number {
-      font-family: var(--font-condensed);
+      font-family: var(--font-cond);
       font-size: 2.8rem;
       font-weight: 700;
       color: var(--intel-light);
@@ -320,26 +415,110 @@
     }
 
     .stat-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.55);
       margin-top: 0.3rem;
     }
 
-    /* ── FOOTER ─────────────────────────────────────────────── */
+    /* ── SUBSCRIPTION FORM ───────────────────────────── */
+    .subscribe-section {
+      background: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    [dir="rtl"] .subscribe-section { text-align: right; }
+
+    .subscribe-section h2 {
+      font-family: var(--font-cond);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--intel-dark);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    [dir="rtl"] .subscribe-section h2 { justify-content: flex-end; }
+
+    .subscribe-section p {
+      font-size: 0.95rem;
+      color: var(--gray-400);
+      margin-bottom: 2rem;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    [dir="rtl"] .subscribe-form { flex-direction: row-reverse; }
+
+    .subscribe-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--gray-100);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--offwhite);
+      outline: none;
+      transition: border-color 0.2s;
+      /* RTL placeholder alignment */
+      text-align: start;
+    }
+
+    .subscribe-form input[type="email"]:focus {
+      border-color: var(--intel-blue);
+      box-shadow: 0 0 0 3px rgba(0,104,181,0.12);
+    }
+
+    .subscribe-form button[type="submit"] {
+      background: var(--intel-blue);
+      color: var(--white);
+      border: none;
+      padding: 0.65rem 1.5rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .subscribe-form button[type="submit"]:hover { background: var(--intel-dark); }
+
+    .subscribe-success {
+      display: none;
+      color: #1a7f4b;
+      font-weight: 600;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
     footer {
       background: var(--ink);
       color: rgba(255,255,255,0.4);
       text-align: center;
       font-size: 0.75rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       padding: 1.6rem;
     }
 
     footer span { color: var(--intel-light); }
 
-    /* ── RESPONSIVE — stack vertically on mobile ────────────── */
+    /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 700px) {
       .timeline-outer {
         overflow-x: visible;
@@ -368,168 +547,368 @@
         max-width: 420px;
         scroll-snap-align: none;
       }
+
+      .subscribe-form { flex-direction: column; }
+      [dir="rtl"] .subscribe-form { flex-direction: column; }
+    }
+
+    /* ── REDUCED MOTION ──────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .card, .pillar-card, .btn-learn, .subscribe-form button { transition: none; }
+      .card:hover { transform: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── HERO ────────────────────────────────────────────────── -->
-  <header class="hero">
+  <!-- ── LANGUAGE TOGGLE ──────────────────────────────── -->
+  <div class="lang-bar" role="navigation" aria-label="Language selector">
+    <button class="lang-btn" id="btn-ar" onclick="setLang('ar')" aria-pressed="true">العربية</button>
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-pressed="false">English</button>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <header class="hero" role="banner">
     <div class="hero-inner">
-      <div class="intel-logo">
+      <div class="intel-logo" aria-hidden="true">
         <span class="intel-logo-mark">in</span>
-        Intel Corporation
+        <span class="txt-en">Intel Corporation</span>
+        <span class="txt-ar" style="display:none">شركة إنتل</span>
       </div>
-      <h1>Sustainability <span>Through the Ages</span></h1>
-      <p>
-        From reducing carbon emissions to achieving net positive water use,
-        Intel has spent decades proving that innovation and responsibility go hand in hand.
-      </p>
-      <p class="hero-hint">Scroll to view timeline &nbsp;|&nbsp; Hover over cards to learn more</p>
+      <h1>
+        <span class="txt-en">Sustainability <span>Through the Ages</span></span>
+        <span class="txt-ar" style="display:none">الاستدامة <span>عبر العصور</span></span>
+      </h1>
+      <p class="txt-en">From reducing carbon emissions to achieving net positive water use, Intel has spent decades proving that innovation and responsibility go hand in hand.</p>
+      <p class="txt-ar" style="display:none">استكشف رحلة Intel عبر الزمن، واكتشف كيف ساهم التزامنا بالابتكار في تشكيل مستقبل أكثر استدامة للتكنولوجيا وكوكبنا.</p>
+      <p class="hero-hint txt-en" aria-live="polite">Scroll to view timeline &nbsp;|&nbsp; Hover over cards to learn more</p>
+      <p class="hero-hint txt-ar" style="display:none" aria-live="polite">مرر لعرض الجدول الزمني | مرر فوق البطاقات لمعرفة المزيد</p>
     </div>
   </header>
 
-  <!-- ── TIMELINE ────────────────────────────────────────────── -->
+  <!-- ── TIMELINE ──────────────────────────────────────── -->
   <div class="section-header">
-    <p class="section-label">Intel Milestones</p>
-    <h2 class="section-title">A Legacy of Sustainable Innovation</h2>
+    <p class="section-label txt-en">Intel Milestones</p>
+    <p class="section-label txt-ar" style="display:none">معالم إنتل</p>
+    <h2 class="section-title txt-en">A Legacy of Sustainable Innovation</h2>
+    <h2 class="section-title txt-ar" style="display:none">إرث الابتكار المستدام</h2>
   </div>
 
-  <div class="timeline-outer">
+  <div class="timeline-outer" role="region" aria-label="Intel sustainability timeline">
     <div class="timeline-track">
 
       <!-- 1994 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">1994</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=520&auto=format&fit=crop"
-          alt="Early environmental efforts"
+          alt="Early environmental reporting documents"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">First Environmental Report</h3>
-          <p class="card-teaser">Intel publishes its first public environmental report, setting a precedent for tech industry transparency.</p>
-          <p class="card-detail">This landmark report detailed Intel's chemical usage, waste generation, and energy consumption — one of the earliest moves by a major semiconductor company to publicly disclose its environmental footprint. It laid the groundwork for decades of accountability to come.</p>
+          <h3 class="card-title txt-en">First Environmental Report</h3>
+          <h3 class="card-title txt-ar" style="display:none">أول تقرير بيئي</h3>
+          <p class="card-teaser txt-en">Intel publishes its first public environmental report, setting a precedent for tech industry transparency.</p>
+          <p class="card-teaser txt-ar" style="display:none">نشرت إنتل أول تقرير بيئي عام لها، مما وضع سابقة لشفافية قطاع التكنولوجيا.</p>
+          <p class="card-detail txt-en">This landmark report detailed Intel's chemical usage, waste generation, and energy consumption — one of the earliest moves by a major semiconductor company to publicly disclose its environmental footprint.</p>
+          <p class="card-detail txt-ar" style="display:none">تناول هذا التقرير الرائد استخدام إنتل للمواد الكيميائية وتوليد النفايات واستهلاك الطاقة.</p>
         </div>
-        <div class="card-footer">Environmental Reporting</div>
-      </div>
+        <div class="card-footer txt-en">Environmental Reporting</div>
+        <div class="card-footer txt-ar" style="display:none">التقارير البيئية</div>
+      </article>
 
       <!-- 1998 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">1998</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=520&auto=format&fit=crop"
-          alt="Energy conservation"
+          alt="Wind turbines representing energy conservation"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">Energy Conservation Goals</h3>
-          <p class="card-teaser">Intel sets aggressive internal targets to reduce energy use across its global manufacturing operations.</p>
-          <p class="card-detail">By implementing energy-efficient equipment and optimizing fab processes, Intel began a multi-year effort to decouple business growth from energy consumption growth. These early investments saved millions of kilowatt-hours annually and influenced how the entire chip industry approached efficiency.</p>
+          <h3 class="card-title txt-en">Energy Conservation Goals</h3>
+          <h3 class="card-title txt-ar" style="display:none">أهداف ترشيد الطاقة</h3>
+          <p class="card-teaser txt-en">Intel sets aggressive internal targets to reduce energy use across its global manufacturing operations.</p>
+          <p class="card-teaser txt-ar" style="display:none">حددت إنتل أهدافاً داخلية طموحة لخفض استهلاك الطاقة في عملياتها التصنيعية العالمية.</p>
+          <p class="card-detail txt-en">By implementing energy-efficient equipment and optimizing fab processes, Intel began a multi-year effort to decouple business growth from energy consumption growth.</p>
+          <p class="card-detail txt-ar" style="display:none">من خلال تطبيق معدات موفرة للطاقة وتحسين عمليات التصنيع، بدأت إنتل جهداً متعدد السنوات لفصل النمو التجاري عن نمو استهلاك الطاقة.</p>
         </div>
-        <div class="card-footer">Energy Efficiency</div>
-      </div>
+        <div class="card-footer txt-en">Energy Efficiency</div>
+        <div class="card-footer txt-ar" style="display:none">كفاءة الطاقة</div>
+      </article>
 
       <!-- 2008 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">2008</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=520&auto=format&fit=crop"
-          alt="Renewable energy"
+          alt="Solar panels for renewable energy"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">Largest Renewable Energy Purchaser</h3>
-          <p class="card-teaser">Intel becomes the largest voluntary purchaser of green power in the US, according to the EPA.</p>
-          <p class="card-detail">Intel purchased over 1.3 billion kilowatt-hours of renewable energy certificates in 2008 alone, equivalent to powering all of its US operations with clean energy. This achievement earned recognition from the EPA Green Power Partnership and set a new bar for corporate renewable energy commitment in the tech sector.</p>
+          <h3 class="card-title txt-en">Largest Renewable Energy Purchaser</h3>
+          <h3 class="card-title txt-ar" style="display:none">أكبر مشتري للطاقة المتجددة</h3>
+          <p class="card-teaser txt-en">Intel becomes the largest voluntary purchaser of green power in the US, according to the EPA.</p>
+          <p class="card-teaser txt-ar" style="display:none">أصبحت إنتل أكبر مشترٍ طوعي للطاقة الخضراء في الولايات المتحدة وفقاً لوكالة حماية البيئة.</p>
+          <p class="card-detail txt-en">Intel purchased over 1.3 billion kilowatt-hours of renewable energy certificates in 2008 alone, equivalent to powering all of its US operations with clean energy.</p>
+          <p class="card-detail txt-ar" style="display:none">اشترت إنتل أكثر من 1.3 مليار كيلوواط ساعة من شهادات الطاقة المتجددة في عام 2008 وحده.</p>
         </div>
-        <div class="card-footer">Renewable Energy</div>
-      </div>
+        <div class="card-footer txt-en">Renewable Energy</div>
+        <div class="card-footer txt-ar" style="display:none">الطاقة المتجددة</div>
+      </article>
 
       <!-- 2012 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">2012</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=520&auto=format&fit=crop"
-          alt="Water conservation"
+          alt="Water conservation and restoration"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">Water Restoration Program</h3>
-          <p class="card-teaser">Intel launches a comprehensive water restoration initiative targeting water-stressed regions near its facilities.</p>
-          <p class="card-detail">Chip fabrication is water-intensive, and Intel's water restoration program aimed to return as much water to local watersheds as its manufacturing consumed. By partnering with conservation nonprofits and investing in recycled water infrastructure, Intel restored billions of gallons of water across Arizona, Oregon, and beyond.</p>
+          <h3 class="card-title txt-en">Water Restoration Program</h3>
+          <h3 class="card-title txt-ar" style="display:none">برنامج استعادة المياه</h3>
+          <p class="card-teaser txt-en">Intel launches a comprehensive water restoration initiative targeting water-stressed regions near its facilities.</p>
+          <p class="card-teaser txt-ar" style="display:none">أطلقت إنتل مبادرة شاملة لاستعادة المياه تستهدف المناطق المجهدة مائياً بالقرب من منشآتها.</p>
+          <p class="card-detail txt-en">Chip fabrication is water-intensive. Intel's program aimed to return as much water to local watersheds as its manufacturing consumed, restoring billions of gallons across Arizona, Oregon, and beyond.</p>
+          <p class="card-detail txt-ar" style="display:none">تستهدف الاستعادة إعادة ما تستهلكه المصانع إلى الأحواض المائية المحلية، بمليارات الغالونات في أريزونا وأوريغون وغيرها.</p>
         </div>
-        <div class="card-footer">Water Conservation</div>
-      </div>
+        <div class="card-footer txt-en">Water Conservation</div>
+        <div class="card-footer txt-ar" style="display:none">الحفاظ على المياه</div>
+      </article>
 
       <!-- 2016 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">2016</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=520&auto=format&fit=crop"
-          alt="Supply chain responsibility"
+          alt="Responsible supply chain sourcing"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">Conflict-Free Supply Chain</h3>
-          <p class="card-teaser">Intel becomes the first semiconductor company to achieve a verified conflict-free supply chain for its microprocessors.</p>
-          <p class="card-detail">After years of auditing and working with smelters, Intel eliminated minerals sourced from conflict zones in the Democratic Republic of Congo from its supply chain. This achievement set an industry standard and pushed other major tech companies to follow, reshaping how the semiconductor industry thinks about ethical sourcing.</p>
+          <h3 class="card-title txt-en">Conflict-Free Supply Chain</h3>
+          <h3 class="card-title txt-ar" style="display:none">سلسلة توريد خالية من النزاعات</h3>
+          <p class="card-teaser txt-en">Intel becomes the first semiconductor company to achieve a verified conflict-free supply chain for its microprocessors.</p>
+          <p class="card-teaser txt-ar" style="display:none">أصبحت إنتل أول شركة لأشباه الموصلات تحقق سلسلة توريد خالية من النزاعات لمعالجاتها الدقيقة.</p>
+          <p class="card-detail txt-en">After years of auditing, Intel eliminated minerals sourced from conflict zones in the Democratic Republic of Congo, setting an industry standard for ethical sourcing.</p>
+          <p class="card-detail txt-ar" style="display:none">بعد سنوات من التدقيق، أزالت إنتل المعادن المستخرجة من مناطق النزاع في جمهورية الكونغو الديمقراطية.</p>
         </div>
-        <div class="card-footer">Responsible Sourcing</div>
-      </div>
+        <div class="card-footer txt-en">Responsible Sourcing</div>
+        <div class="card-footer txt-ar" style="display:none">المصادر المسؤولة</div>
+      </article>
 
       <!-- 2020 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">2020</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=520&auto=format&fit=crop"
-          alt="Climate goals"
+          alt="Climate and sustainability goals"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">RISE Strategy Launch</h3>
-          <p class="card-teaser">Intel launches its RISE strategy — Responsible, Inclusive, Sustainable, Enabling — with 2030 goals across people and planet.</p>
-          <p class="card-detail">The RISE strategy set ambitious 2030 targets: achieving net-zero greenhouse gas emissions in global operations, conserving 60 billion gallons of water, diverting 90% of waste from landfills, and reaching 100% renewable electricity. It represented Intel's most comprehensive sustainability framework to date and tied executive compensation to sustainability metrics.</p>
+          <h3 class="card-title txt-en">RISE Strategy Launch</h3>
+          <h3 class="card-title txt-ar" style="display:none">إطلاق استراتيجية RISE</h3>
+          <p class="card-teaser txt-en">Intel launches its RISE strategy — Responsible, Inclusive, Sustainable, Enabling — with bold 2030 goals.</p>
+          <p class="card-teaser txt-ar" style="display:none">أطلقت إنتل استراتيجية RISE مع أهداف طموحة لعام 2030 في مجال المناخ والمياه وإدارة النفايات.</p>
+          <p class="card-detail txt-en">RISE set targets: net-zero greenhouse gas emissions, conserving 60B gallons of water, diverting 90% of waste from landfills, and 100% renewable electricity — all by 2030.</p>
+          <p class="card-detail txt-ar" style="display:none">تضمنت الأهداف: صافي انبعاثات صفري، وتوفير 60 مليار غالون من المياه، وصرف 90% من النفايات، و100% كهرباء متجددة.</p>
         </div>
-        <div class="card-footer">RISE Strategy</div>
-      </div>
+        <div class="card-footer txt-en">RISE Strategy</div>
+        <div class="card-footer txt-ar" style="display:none">استراتيجية RISE</div>
+      </article>
 
       <!-- 2030 -->
-      <div class="card">
+      <article class="card" tabindex="0">
         <span class="card-year">2030</span>
         <img class="card-img"
           src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=520&auto=format&fit=crop"
-          alt="Future goals"
+          alt="Future sustainable technology goals"
           onerror="this.style.background='#e8edf4';this.removeAttribute('src')" />
         <div class="card-body">
-          <h3 class="card-title">Net-Zero & Net Positive Water</h3>
-          <p class="card-teaser">Intel's 2030 target: achieve net-zero greenhouse gas emissions and net positive water use across all global operations.</p>
-          <p class="card-detail">By 2030, Intel aims to restore more water than it consumes (net positive water), achieve net-zero Scope 1 and 2 greenhouse gas emissions, power 100% of global operations with renewable electricity, and send zero manufacturing waste to landfills. These goals represent the culmination of over three decades of environmental commitment.</p>
+          <h3 class="card-title txt-en">Net-Zero & Net Positive Water</h3>
+          <h3 class="card-title txt-ar" style="display:none">صافي الصفر ومياه إيجابية</h3>
+          <p class="card-teaser txt-en">Intel's 2030 target: net-zero greenhouse gas emissions and net positive water use across all global operations.</p>
+          <p class="card-teaser txt-ar" style="display:none">هدف إنتل لعام 2030: تحقيق صافي انبعاثات صفري واستخدام إيجابي صافٍ للمياه في جميع عملياتها العالمية.</p>
+          <p class="card-detail txt-en">By 2030, Intel aims to restore more water than it consumes, achieve net-zero Scope 1 & 2 emissions, run on 100% renewable electricity, and send zero manufacturing waste to landfills.</p>
+          <p class="card-detail txt-ar" style="display:none">تهدف إنتل إلى استعادة مياه أكثر مما تستهلكه، وتحقيق صافي انبعاثات صفري، والعمل بكهرباء متجددة 100%.</p>
         </div>
-        <div class="card-footer">2030 Vision</div>
-      </div>
+        <div class="card-footer txt-en">2030 Vision</div>
+        <div class="card-footer txt-ar" style="display:none">رؤية 2030</div>
+      </article>
 
     </div>
   </div>
 
-  <!-- ── STATS BAND ───────────────────────────────────────────── -->
-  <div class="stats">
+  <!-- ── THREE-COLUMN PILLARS ─────────────────────────── -->
+  <section class="pillars-section" aria-labelledby="pillars-heading">
+    <div class="container">
+      <div class="section-header pb-4">
+        <p class="section-label txt-en">Our Commitments</p>
+        <p class="section-label txt-ar" style="display:none">التزاماتنا</p>
+        <h2 class="section-title txt-en" id="pillars-heading">Three Pillars of Intel Sustainability</h2>
+        <h2 class="section-title txt-ar" style="display:none" id="pillars-heading-ar">ثلاثة ركائز لاستدامة إنتل</h2>
+      </div>
+      <div class="row g-4">
+
+        <!-- Pillar 1 -->
+        <div class="col-12 col-md-4">
+          <div class="pillar-card">
+            <h3>
+              <i class="bi bi-globe-americas" aria-hidden="true"></i>
+              <span class="txt-en">Climate Action</span>
+              <span class="txt-ar" style="display:none">العمل المناخي</span>
+            </h3>
+            <p class="txt-en">In 2022, Intel committed to achieving net-zero greenhouse gas emissions (Scopes 1 and 2) by 2040. This commitment is backed by partnerships with suppliers and investments in clean energy infrastructure across all global operations.</p>
+            <p class="txt-ar" style="display:none">في عام 2022، تعهدت شركة إنتل بتحقيق صافي انبعاثات حرارية صفرية (النطاقان 1 و2) بحلول عام 2040. ويستند هذا الالتزام إلى عقود من المبادرات والشراكات البيئية في جميع أنحاء صناعة أشباه الموصلات.</p>
+            <a href="#" class="btn-learn txt-en" aria-label="Learn more about Intel climate action">Learn More</a>
+            <a href="#" class="btn-learn txt-ar" style="display:none" aria-label="اعرف المزيد عن العمل المناخي لإنتل">تعلم أكثر</a>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="col-12 col-md-4">
+          <div class="pillar-card">
+            <h3>
+              <i class="bi bi-globe" aria-hidden="true"></i>
+              <span class="txt-en">Commitment</span>
+              <span class="txt-ar" style="display:none">الالتزام</span>
+            </h3>
+            <p class="txt-en">Intel conserves billions of gallons of water annually through recycling and watershed restoration partnerships. The company works with local communities to return water to water-stressed regions near its manufacturing facilities worldwide.</p>
+            <p class="txt-ar" style="display:none">تحافظ إنتل على مليارات الغالونات من المياه سنوياً، وتتعاون مع المجتمعات المحلية لاستعادة مجتمعات المياه. كما تُعيد إنتل تدوير المواد لتقليل النفايات وتعزيز الاقتصاد الدائري.</p>
+            <a href="#" class="btn-learn txt-en" aria-label="Learn more about Intel water and waste programs">Learn More</a>
+            <a href="#" class="btn-learn txt-ar" style="display:none" aria-label="اعرف المزيد عن برامج المياه والنفايات لإنتل">تعلم أكثر</a>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="col-12 col-md-4">
+          <div class="pillar-card">
+            <h3>
+              <i class="bi bi-bar-chart-line" aria-hidden="true"></i>
+              <span class="txt-en">RISE Strategy</span>
+              <span class="txt-ar" style="display:none">استراتيجية RISE</span>
+            </h3>
+            <p class="txt-en">In the framework of Intel's RISE strategy (Responsible and Sustainable), Intel set ambitious targets for 2030, which included pushing forward on improving the standard of the climate industry, water management, and the reduction of waste.</p>
+            <p class="txt-ar" style="display:none">في إطار استراتيجيتها RISE (المسؤولية والشاملة والمستدامة والممكِّنة)، حددت شركة إنتل أهدافاً طموحة لعام 2030، بما في ذلك دفع التقدم على مستوى صناعة المناخ، وإدارة المياه، والحد من النفايات.</p>
+            <a href="#" class="btn-learn txt-en" aria-label="Learn more about Intel RISE strategy">Learn More</a>
+            <a href="#" class="btn-learn txt-ar" style="display:none" aria-label="اعرف المزيد عن استراتيجية RISE لإنتل">تعلم أكثر</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAND ─────────────────────────────────────── -->
+  <div class="stats" role="region" aria-label="Sustainability statistics">
     <div>
       <div class="stat-number">100%</div>
-      <div class="stat-label">Renewable Electricity Goal</div>
+      <div class="stat-label txt-en">Renewable Electricity Goal</div>
+      <div class="stat-label txt-ar" style="display:none">هدف الكهرباء المتجددة</div>
     </div>
     <div>
       <div class="stat-number">60B</div>
-      <div class="stat-label">Gallons of Water to Conserve</div>
+      <div class="stat-label txt-en">Gallons of Water to Conserve</div>
+      <div class="stat-label txt-ar" style="display:none">غالون مياه للحفاظ عليها</div>
     </div>
     <div>
       <div class="stat-number">90%</div>
-      <div class="stat-label">Waste Diverted from Landfills</div>
+      <div class="stat-label txt-en">Waste Diverted from Landfills</div>
+      <div class="stat-label txt-ar" style="display:none">النفايات المحوّلة عن المكبات</div>
     </div>
     <div>
       <div class="stat-number">2030</div>
-      <div class="stat-label">Net-Zero Target Year</div>
+      <div class="stat-label txt-en">Net-Zero Target Year</div>
+      <div class="stat-label txt-ar" style="display:none">عام هدف صافي الصفر</div>
     </div>
   </div>
 
-  <!-- ── FOOTER ──────────────────────────────────────────────── -->
-  <footer>
-    <p>© 2025 &nbsp;<span>Intel Corporation</span> &nbsp;·&nbsp; Sustainability Through the Ages &nbsp;·&nbsp; Built for GCAP Web Development</p>
+  <!-- ── SUBSCRIPTION FORM ──────────────────────────────── -->
+  <section class="subscribe-section" aria-labelledby="subscribe-heading">
+    <div class="container" style="max-width:600px">
+      <h2 id="subscribe-heading">
+        <i class="bi bi-envelope-paper" aria-hidden="true"></i>
+        <span class="txt-en">Subscribe to Our Sustainability Newsletter</span>
+        <span class="txt-ar" style="display:none">اشترك في نشرتنا الإخبارية للاستدامة</span>
+      </h2>
+      <p class="txt-en">Get Intel's latest sustainability reports, milestones, and news delivered to your inbox.</p>
+      <p class="txt-ar" style="display:none">احصل على أحدث تقارير الاستدامة والمعالم والأخبار من إنتل مباشرة إلى بريدك الوارد.</p>
+
+      <form class="subscribe-form" id="subscribeForm" novalidate aria-label="Sustainability newsletter subscription form">
+        <label for="emailInput" class="visually-hidden">
+          <span class="txt-en">Email address</span>
+          <span class="txt-ar" style="display:none">عنوان البريد الإلكتروني</span>
+        </label>
+        <input
+          type="email"
+          id="emailInput"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="Enter your email address"
+          data-placeholder-ar="أدخل بريدك الإلكتروني"
+          data-placeholder-en="Enter your email address"
+          aria-required="true"
+          aria-describedby="subscribe-success"
+        />
+        <button type="submit">
+          <span class="txt-en">Subscribe</span>
+          <span class="txt-ar" style="display:none">يشترك</span>
+        </button>
+      </form>
+
+      <p class="subscribe-success" id="subscribe-success" role="alert" aria-live="polite">
+        <span class="txt-en">✓ You're subscribed! Welcome to Intel's sustainability community.</span>
+        <span class="txt-ar" style="display:none">✓ تم الاشتراك! مرحباً بك في مجتمع الاستدامة لإنتل.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <p>
+      <span class="txt-en">© 2025 &nbsp;<span>Intel Corporation</span> &nbsp;·&nbsp; Sustainability Through the Ages &nbsp;·&nbsp; Built for GCAP Web Development</span>
+      <span class="txt-ar" style="display:none">© ٢٠٢٥ شركة <span>إنتل</span>. جميع الحقوق محفوظة.</span>
+    </p>
   </footer>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ── LANGUAGE SWITCHER ─────────────────────────────────
+    function setLang(lang) {
+      const html = document.documentElement;
+      const isAr = lang === 'ar';
+
+      html.setAttribute('lang', lang);
+      html.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+
+      // Toggle text content
+      document.querySelectorAll('.txt-en').forEach(el => el.style.display = isAr ? 'none' : '');
+      document.querySelectorAll('.txt-ar').forEach(el => el.style.display = isAr ? '' : 'none');
+
+      // Update email placeholder
+      const emailInput = document.getElementById('emailInput');
+      if (emailInput) {
+        emailInput.placeholder = isAr
+          ? emailInput.dataset.placeholderAr
+          : emailInput.dataset.placeholderEn;
+      }
+
+      // Update button states
+      document.getElementById('btn-en').classList.toggle('active', !isAr);
+      document.getElementById('btn-ar').classList.toggle('active', isAr);
+      document.getElementById('btn-en').setAttribute('aria-pressed', String(!isAr));
+      document.getElementById('btn-ar').setAttribute('aria-pressed', String(isAr));
+    }
+
+    // ── FORM SUBMISSION ───────────────────────────────────
+    document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      if (email && email.includes('@')) {
+        document.getElementById('subscribe-success').style.display = 'block';
+        this.reset();
+      }
+    });
+
+    // Start in English
+    setLang('en');
+  </script>
 </body>
 </html>
